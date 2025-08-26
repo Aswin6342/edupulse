@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h2>💬 Ask Your Mentor</h2>
+  <a href="{% url 'dashboard' %}" class="btn btn-outline-primary">← Back to Dashboard</a>
+</div>
+
+<div class="row">
+  <div class="col-md-4">
+    <div class="card shadow">
+      <div class="card-header">
+        <h5>📝 Send New Message</h5>
+      </div>
+      <div class="card-body">
+        <form method="post">
+          {% csrf_token %}
+          <div class="mb-3">
+            <textarea name="question" placeholder="Type your question here..." class="form-control" rows="4" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary w-100">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-8">
+    <div class="card shadow">
+      <div class="card-header">
+        <h5>📨 Message History</h5>
+      </div>
+      <div class="card-body">
+        {% if messages %}
+          {% for message in messages %}
+            <div class="border-bottom pb-3 mb-3">
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="flex-grow-1">
+                  <h6 class="mb-1">Your Question:</h6>
+                  <p class="mb-2">{{ message.question }}</p>
+                  {% if message.reply %}
+                    <h6 class="mb-1 text-success">Mentor's Reply:</h6>
+                    <p class="mb-1">{{ message.reply }}</p>
+                  {% else %}
+                    <span class="badge bg-warning">Pending Reply</span>
+                  {% endif %}
+                </div>
+                <small class="text-muted">{{ message.created_at|date:"M d, Y" }}</small>
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <p class="text-muted text-center py-3">No messages yet. Send your first question!</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

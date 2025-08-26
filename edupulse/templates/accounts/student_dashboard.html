@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="mb-4">Student Dashboard</h2>
+<div class="row g-3">
+  <div class="col-md-3">
+    <div class="card shadow text-center p-3">
+      <h5>🎥 Videos</h5>
+      <a href="{% url 'student_videos' %}" class="btn btn-primary mt-2">Watch</a>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card shadow text-center p-3">
+      <h5>📚 Notes</h5>
+      <a href="{% url 'student_notes' %}" class="btn btn-success mt-2">View Notes</a>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card shadow text-center p-3">
+      <h5>🔗 YouTube</h5>
+      <a href="{% url 'student_youtube' %}" class="btn btn-warning mt-2">Open Links</a>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card shadow text-center p-3">
+      <h5>📊 Performance</h5>
+      <a href="{% url 'student_performance' %}" class="btn btn-info mt-2">Track</a>
+    </div>
+  </div>
+</div>
+
+<div class="row mt-4">
+  <div class="col-md-12">
+    <div class="card shadow text-center p-4">
+      <h5>💬 Messages</h5>
+      <a href="{% url 'student_messages' %}" class="btn btn-dark mt-2">Ask Doubts</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h2>📋 Admin List</h2>
+  <a href="{% url 'dashboard' %}" class="btn btn-outline-primary">← Back to Dashboard</a>
+</div>
+
+{% if admins %}
+  <div class="row">
+    {% for admin in admins %}
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card shadow">
+          <div class="card-body text-center">
+            <h5 class="card-title">{{ admin.username }}</h5>
+            <p class="card-text text-muted">{{ admin.email }}</p>
+            <span class="badge bg-primary">Admin</span>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% else %}
+  <div class="text-center py-5">
+    <h4 class="text-muted">No admins found.</h4>
+    <p>Create your first admin account.</p>
+  </div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="mb-4">Admin Dashboard</h2>
+<div class="row">
+  <div class="col-md-6">
+    <div class="card shadow p-4 text-center">
+      <h4>👨‍🏫 Add Mentor</h4>
+      <a class="btn btn-primary mt-2" href="{% url 'add_mentor' %}">Add Mentor</a>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card shadow p-4 text-center">
+      <h4>📋 View Mentors</h4>
+      <a class="btn btn-info mt-2" href="{% url 'view_mentors' %}">View Mentors</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

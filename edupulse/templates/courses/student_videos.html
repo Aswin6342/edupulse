@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h2>📹 Course Videos</h2>
+  <a href="{% url 'dashboard' %}" class="btn btn-outline-primary">← Back to Dashboard</a>
+</div>
+
+{% if videos %}
+  <div class="row">
+    {% for video in videos %}
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card shadow h-100">
+          <div class="card-body">
+            <h5 class="card-title">{{ video.title }}</h5>
+            <p class="card-text text-muted">{{ video.caption|default:"No caption" }}</p>
+            <p class="card-text"><small class="text-muted">By: {{ video.mentor.username }}</small></p>
+            
+            {% if video.id in watched_videos %}
+              <span class="badge bg-success mb-2">✅ Watched</span>
+            {% else %}
+              <span class="badge bg-warning mb-2">⏳ Not Watched</span>
+            {% endif %}
+            
+            <div class="d-grid gap-2">
+              <video width="100%" controls class="mb-2">
+                <source src="{{ video.video_file.url }}" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              {% if video.id not in watched_videos %}
+                <form method="post" class="d-inline">
+                  {% csrf_token %}
+                  <input type="hidden" name="video_id" value="{{ video.id }}">
+                  <button type="submit" class="btn btn-success w-100">Mark as Watched</button>
+                </form>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% else %}
+  <div class="text-center py-5">
+    <h4 class="text-muted">No videos available for your course yet.</h4>
+    <p>Check back later or contact your mentor.</p>
+  </div>
+{% endif %}
+{% endblock %}

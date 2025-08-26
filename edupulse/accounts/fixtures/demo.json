@@ -1,0 +1,82 @@
+[
+  {
+    "model": "accounts.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$QDp2Ti4RZafm6wV4UjL1lV$2akXnyO5hn4lLWwoZXU+3uvfPzKpD+JrWcRBLK6gPYQ=",
+      "last_login": null,
+      "is_superuser": true,
+      "username": "superadmin",
+      "first_name": "",
+      "last_name": "",
+      "email": "superadmin@edupulse.com",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2024-01-01T00:00:00Z",
+      "role": "superadmin",
+      "course": "",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "accounts.user",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$QDp2Ti4RZafm6wV4UjL1lV$2akXnyO5hn4lLWwoZXU+3uvfPzKpD+JrWcRBLK6gPYQ=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "admin1",
+      "first_name": "",
+      "last_name": "",
+      "email": "admin1@edupulse.com",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2024-01-01T00:00:00Z",
+      "role": "admin",
+      "course": "",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "accounts.user",
+    "pk": 3,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$QDp2Ti4RZafm6wV4UjL1lV$2akXnyO5hn4lLWwoZXU+3uvfPzKpD+JrWcRBLK6gPYQ=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "mentor1",
+      "first_name": "",
+      "last_name": "",
+      "email": "mentor1@edupulse.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-01-01T00:00:00Z",
+      "role": "mentor",
+      "course": "Django",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "accounts.user",
+    "pk": 4,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$QDp2Ti4RZafm6wV4UjL1lV$2akXnyO5hn4lLWwoZXU+3uvfPzKpD+JrWcRBLK6gPYQ=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "student1",
+      "first_name": "",
+      "last_name": "",
+      "email": "student1@edupulse.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-01-01T00:00:00Z",
+      "role": "student",
+      "course": "Django",
+      "groups": [],
+      "user_permissions": []
+    }
+  }
+]
