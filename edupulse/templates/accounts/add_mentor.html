@@ -1,41 +1,99 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="d-flex justify-content-between align-items-center mb-4">
-  <h2>👨‍🏫 Add New Mentor</h2>
-  <a href="{% url 'dashboard' %}" class="btn btn-outline-primary">← Back to Dashboard</a>
-</div>
+<div class="container py-5">
+  <!-- Header -->
+  <div class="d-flex justify-content-between align-items-center mb-5">
+    <h2 class="fw-bold text-primary">👨‍🏫 Add New Mentor</h2>
+    <a href="{% url 'dashboard' %}" class="btn btn-outline-secondary rounded-pill px-4 shadow-sm">
+      ← Back to Dashboard
+    </a>
+  </div>
 
-<div class="row justify-content-center">
-  <div class="col-md-6">
-    <div class="card shadow">
-      <div class="card-body">
-        <form method="post">
-          {% csrf_token %}
-          <div class="mb-3">
-            <label class="form-label">Username</label>
-            <input type="text" name="username" class="form-control" required>
-          </div>
-          <div class="mb-3">
-            <label class="form-label">Email</label>
-            <input type="email" name="email" class="form-control" required>
-          </div>
-          <div class="mb-3">
-            <label class="form-label">Password</label>
-            <input type="password" name="password" class="form-control" required>
-          </div>
-          <div class="mb-3">
-            <label class="form-label">Course</label>
-            <select name="course" class="form-control" required>
-              <option value="">Select Course</option>
-              <option value="UI/UX">UI/UX</option>
-              <option value="MERN">MERN</option>
-              <option value="Django">Django</option>
-            </select>
-          </div>
-          <button type="submit" class="btn btn-primary w-100">Create Mentor</button>
-        </form>
+  <!-- Form Card -->
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="card border-0 shadow-lg rounded-4">
+        <div class="card-body p-5">
+          <h4 class="text-center fw-semibold mb-4">Fill Mentor Details</h4>
+
+          <form method="post">
+            {% csrf_token %}
+
+            <!-- Username -->
+            <div class="form-floating mb-3">
+              <input type="text" name="username" class="form-control rounded-3" id="username" placeholder="Username" required>
+              <label for="username"><i class="bi bi-person me-2 text-primary"></i> Username</label>
+            </div>
+
+            <!-- Email -->
+            <div class="form-floating mb-3">
+              <input type="email" name="email" class="form-control rounded-3" id="email" placeholder="Email" required>
+              <label for="email"><i class="bi bi-envelope me-2 text-primary"></i> Email</label>
+            </div>
+
+            <!-- Password -->
+            <div class="form-floating mb-3">
+              <input type="password" name="password" class="form-control rounded-3" id="password" placeholder="Password" required>
+              <label for="password"><i class="bi bi-lock me-2 text-primary"></i> Password</label>
+            </div>
+
+            <!-- Course -->
+            <div class="form-floating mb-4">
+              <select name="course" class="form-select rounded-3" id="course" required>
+                <option value="" selected disabled>Choose a Course</option>
+                <option value="UI/UX">UI/UX</option>
+                <option value="MERN">MERN</option>
+                <option value="Django">Django</option>
+              </select>
+              <label for="course"><i class="bi bi-book me-2 text-primary"></i> Course</label>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-gradient w-100 py-3 rounded-pill fw-semibold">
+              🚀 Create Mentor
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+<!-- Extra Styling -->
+<style>
+  /* Gradient Button */
+  .btn-gradient {
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    border: none;
+    color: white;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+  }
+  .btn-gradient:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 242, 254, 0.4);
+  }
+
+  /* Card Hover */
+  .card {
+    transition: all 0.3s ease;
+  }
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+  }
+
+  /* Floating Labels */
+  .form-floating label {
+    color: #6c757d;
+  }
+  .form-floating input:focus,
+  .form-floating select:focus {
+    border-color: #4facfe;
+    box-shadow: 0 0 0 0.2rem rgba(79, 172, 254, 0.25);
+  }
+</style>
+
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 {% endblock %}

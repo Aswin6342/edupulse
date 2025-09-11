@@ -1,39 +1,68 @@
 {% extends "base.html" %}
 {% block content %}
-<h2 class="mb-4">Student Dashboard</h2>
-<div class="row g-3">
-  <div class="col-md-3">
-    <div class="card shadow text-center p-3">
-      <h5>🎥 Videos</h5>
-      <a href="{% url 'student_videos' %}" class="btn btn-primary mt-2">Watch</a>
+
+<div class="container py-4">
+  <h2 class="mb-4 text-center fw-bold">🎓 Home</h2>
+
+  <div class="row g-4">
+    <!-- Videos -->
+    <div class="col-md-3 col-sm-6">
+      <div class="card shadow-lg border-0 h-100 text-center p-4 dashboard-card">
+        <div class="display-4 text-primary mb-3">🎥</div>
+        <h5 class="fw-bold">Videos</h5>
+        <a href="{% url 'student_videos' %}" class="btn btn-primary mt-3 w-100">Watch</a>
+      </div>
+    </div>
+
+    <!-- Notes -->
+    <div class="col-md-3 col-sm-6">
+      <div class="card shadow-lg border-0 h-100 text-center p-4 dashboard-card">
+        <div class="display-4 text-success mb-3">📚</div>
+        <h5 class="fw-bold">Notes</h5>
+        <a href="{% url 'student_notes' %}" class="btn btn-success mt-3 w-100">View Notes</a>
+      </div>
+    </div>
+
+    <!-- YouTube -->
+    <div class="col-md-3 col-sm-6">
+      <div class="card shadow-lg border-0 h-100 text-center p-4 dashboard-card">
+        <div class="display-4 text-danger mb-3">🔗</div>
+        <h5 class="fw-bold">YouTube</h5>
+        <a href="{% url 'student_youtube' %}" class="btn btn-danger mt-3 w-100">Open Links</a>
+      </div>
+    </div>
+
+    <!-- Performance -->
+    <div class="col-md-3 col-sm-6">
+      <div class="card shadow-lg border-0 h-100 text-center p-4 dashboard-card">
+        <div class="display-4 text-info mb-3">📊</div>
+        <h5 class="fw-bold">Performance</h5>
+        <a href="{% url 'student_performance' %}" class="btn btn-info mt-3 w-100">Track</a>
+      </div>
     </div>
   </div>
-  <div class="col-md-3">
-    <div class="card shadow text-center p-3">
-      <h5>📚 Notes</h5>
-      <a href="{% url 'student_notes' %}" class="btn btn-success mt-2">View Notes</a>
-    </div>
-  </div>
-  <div class="col-md-3">
-    <div class="card shadow text-center p-3">
-      <h5>🔗 YouTube</h5>
-      <a href="{% url 'student_youtube' %}" class="btn btn-warning mt-2">Open Links</a>
-    </div>
-  </div>
-  <div class="col-md-3">
-    <div class="card shadow text-center p-3">
-      <h5>📊 Performance</h5>
-      <a href="{% url 'student_performance' %}" class="btn btn-info mt-2">Track</a>
+
+  <!-- Messages -->
+  <div class="row mt-5">
+    <div class="col-12">
+      <div class="card shadow-lg border-0 text-center p-5 dashboard-card">
+        <div class="display-4 text-dark mb-3">💬</div>
+        <h4 class="fw-bold">Messages</h4>
+        <a href="{% url 'student_messages' %}" class="btn btn-dark mt-3 px-5">Ask Doubts</a>
+      </div>
     </div>
   </div>
 </div>
 
-<div class="row mt-4">
-  <div class="col-md-12">
-    <div class="card shadow text-center p-4">
-      <h5>💬 Messages</h5>
-      <a href="{% url 'student_messages' %}" class="btn btn-dark mt-2">Ask Doubts</a>
-    </div>
-  </div>
-</div>
+<style>
+  .dashboard-card {
+    border-radius: 15px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  }
+</style>
+
 {% endblock %}

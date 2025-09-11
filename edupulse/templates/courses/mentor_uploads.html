@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-4">
-  <h2>Upload Content</h2>
-  <a href="{% url 'dashboard' %}" class="btn btn-outline-primary">← Back to Dashboard</a>
+  <h2 class="fw-bold text-primary">📤 Upload Content</h2>
+  <a href="{% url 'dashboard' %}" class="btn btn-outline-primary">← Back to Home</a>
 </div>
 
 {% if messages %}
@@ -16,79 +16,94 @@
   </div>
 {% endif %}
 
-<div class="row">
+<div class="row g-4">
+
+  <!-- Upload Video -->
   <div class="col-md-4">
-    <div class="card shadow">
-      <div class="card-header">
-        <h4>📹 Upload Video</h4>
+    <div class="card shadow-lg border-0 h-100">
+      <div class="card-header bg-primary text-white fw-bold">
+        📹 Upload Video
       </div>
       <div class="card-body">
         <form method="post" enctype="multipart/form-data">
           {% csrf_token %}
           <input type="hidden" name="video">
+
           <div class="mb-3">
             <label class="form-label">Video Title *</label>
-            <input type="text" name="title" placeholder="Video Title" class="form-control" required>
+            <input type="text" name="title" placeholder="Enter video title" class="form-control" required>
           </div>
+
           <div class="mb-3">
             <label class="form-label">Video File *</label>
             <input type="file" name="video_file" class="form-control" accept="video/*" required>
           </div>
+
           <div class="mb-3">
             <label class="form-label">Caption</label>
-            <textarea name="caption" placeholder="Video Caption" class="form-control" rows="3"></textarea>
+            <textarea name="caption" placeholder="Enter a short caption" class="form-control" rows="3"></textarea>
           </div>
-          <button type="submit" class="btn btn-success w-100">Upload Video</button>
+
+          <button type="submit" class="btn btn-primary w-100">Upload Video</button>
         </form>
       </div>
     </div>
   </div>
 
+  <!-- Upload Note -->
   <div class="col-md-4">
-    <div class="card shadow">
-      <div class="card-header">
-        <h4>📄 Upload Note</h4>
+    <div class="card shadow-lg border-0 h-100">
+      <div class="card-header bg-success text-white fw-bold">
+        📄 Upload Note
       </div>
       <div class="card-body">
         <form method="post" enctype="multipart/form-data">
           {% csrf_token %}
           <input type="hidden" name="note">
+
           <div class="mb-3">
             <label class="form-label">Note Title *</label>
-            <input type="text" name="title" placeholder="Note Title" class="form-control" required>
+            <input type="text" name="title" placeholder="Enter note title" class="form-control" required>
           </div>
+
           <div class="mb-3">
-            <label class="form-label">File *</label>
+            <label class="form-label">Upload File *</label>
             <input type="file" name="file" class="form-control" accept=".pdf,.doc,.docx,.txt" required>
           </div>
+
           <button type="submit" class="btn btn-success w-100">Upload Note</button>
         </form>
       </div>
     </div>
   </div>
 
+  <!-- Add YouTube Link -->
   <div class="col-md-4">
-    <div class="card shadow">
-      <div class="card-header">
-        <h4>🔗 Add YouTube Link</h4>
+    <div class="card shadow-lg border-0 h-100">
+      <div class="card-header bg-danger text-white fw-bold">
+        🔗 Add YouTube Link
       </div>
       <div class="card-body">
         <form method="post">
           {% csrf_token %}
           <input type="hidden" name="youtube">
+
           <div class="mb-3">
             <label class="form-label">Link Title *</label>
-            <input type="text" name="title" placeholder="Link Title" class="form-control" required>
+            <input type="text" name="title" placeholder="Enter link title" class="form-control" required>
           </div>
+
           <div class="mb-3">
             <label class="form-label">YouTube URL *</label>
             <input type="url" name="url" placeholder="https://www.youtube.com/watch?v=..." class="form-control" required>
-            <small class="form-text text-muted">Enter the full YouTube video URL</small>
+            <small class="form-text text-muted">Paste the full YouTube video link</small>
           </div>
-          <button type="submit" class="btn btn-success w-100">Add Link</button>
+
+          <button type="submit" class="btn btn-danger w-100">Add Link</button>
         </form>
       </div>
     </div>
   </div>
+
 </div>
 {% endblock %}

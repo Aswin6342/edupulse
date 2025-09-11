@@ -1,29 +1,95 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="d-flex justify-content-between align-items-center mb-4">
-  <h2>📋 Mentor List</h2>
-  <a href="{% url 'dashboard' %}" class="btn btn-outline-primary">← Back to Dashboard</a>
-</div>
+<div class="container py-5">
+  <!-- Header -->
+  <div class="d-flex justify-content-between align-items-center mb-5">
+    <h2 class="fw-bold text-primary">📋 Mentor List</h2>
+    <a href="{% url 'dashboard' %}" class="btn btn-outline-secondary rounded-pill px-4 shadow-sm">
+      ← Back to Home
+    </a>
+  </div>
 
-{% if mentors %}
-  <div class="row">
-    {% for mentor in mentors %}
-      <div class="col-md-6 col-lg-4 mb-4">
-        <div class="card shadow">
-          <div class="card-body text-center">
-            <h5 class="card-title">{{ mentor.username }}</h5>
-            <p class="card-text text-muted">{{ mentor.email }}</p>
-            <span class="badge bg-info">{{ mentor.course }}</span>
-            <span class="badge bg-success ms-1">Mentor</span>
+  {% if mentors %}
+    <div class="row g-4">
+      {% for mentor in mentors %}
+        <div class="col-md-6 col-lg-4">
+          <div class="card border-0 shadow-lg rounded-4 mentor-card h-100">
+            <div class="card-body text-center p-4">
+              <!-- Avatar -->
+              <div class="avatar-circle mx-auto mb-3">
+                <span class="initials">{{ mentor.username|first|upper }}</span>
+              </div>
+
+              <!-- Name & Email -->
+              <h5 class="card-title fw-semibold mb-1">{{ mentor.username }}</h5>
+              <p class="card-text text-muted small">{{ mentor.email }}</p>
+
+              <!-- Badges -->
+              <div class="mb-3">
+                <span class="badge bg-gradient-info px-3 py-2">{{ mentor.course }}</span>
+                <span class="badge bg-gradient-success px-3 py-2">Mentor</span>
+              </div>
+
+              {% comment %} <!-- Actions (optional) -->
+              <div class="d-flex justify-content-center gap-2">
+                <a href="#" class="btn btn-sm btn-outline-primary rounded-pill px-3">
+                  ✏️ Edit
+                </a>
+                <a href="#" class="btn btn-sm btn-outline-danger rounded-pill px-3">
+                  🗑️ Delete
+                </a>
+              </div> {% endcomment %}
+            </div>
           </div>
         </div>
-      </div>
-    {% endfor %}
-  </div>
-{% else %}
-  <div class="text-center py-5">
-    <h4 class="text-muted">No mentors found.</h4>
-    <p>Create your first mentor account.</p>
-  </div>
-{% endif %}
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="text-center py-5">
+      <h4 class="text-muted">No mentors found.</h4>
+      <p class="text-secondary">Create your first mentor account.</p>
+    </div>
+  {% endif %}
+</div>
+
+<!-- Styles -->
+<style>
+  /* Mentor Card */
+  .mentor-card {
+    transition: all 0.3s ease;
+  }
+  .mentor-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+  }
+
+  /* Avatar Circle */
+  .avatar-circle {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+
+  /* Gradient Badges */
+  .bg-gradient-info {
+    background: linear-gradient(135deg, #43e97b, #38f9d7);
+    border: none;
+    color: white;
+    font-weight: 500;
+  }
+  .bg-gradient-success {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border: none;
+    color: white;
+    font-weight: 500;
+  }
+</style>
 {% endblock %}

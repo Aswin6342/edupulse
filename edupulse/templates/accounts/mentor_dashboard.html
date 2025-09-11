@@ -1,18 +1,43 @@
 {% extends "base.html" %}
 {% block content %}
-<h2 class="mb-4">Mentor Dashboard</h2>
-<div class="row">
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h2 class="fw-bold text-primary">🏠 Home</h2>
+</div>
+
+<div class="row g-4">
+  <!-- Upload Content -->
   <div class="col-md-6">
-    <div class="card shadow p-4 text-center">
-      <h4>📤 Upload Content</h4>
-      <a class="btn btn-success mt-2" href="{% url 'mentor_uploads' %}">Upload</a>
+    <div class="card shadow-lg border-0 h-100 text-center p-4">
+      <div class="card-body">
+        <h4 class="fw-semibold mb-3">📤 Upload Content</h4>
+        <p class="text-muted">Upload videos, notes, or YouTube links for your students.</p>
+        <a class="btn btn-success w-100 fw-bold" href="{% url 'mentor_uploads' %}">Go to Uploads</a>
+      </div>
     </div>
   </div>
+
+  <!-- Student Messages -->
   <div class="col-md-6">
-    <div class="card shadow p-4 text-center">
-      <h4>💬 Student Messages</h4>
-      <a class="btn btn-warning mt-2" href="{% url 'mentor_messages' %}">View Messages</a>
+    <div class="card shadow-lg border-0 h-100 text-center p-4">
+      <div class="card-body">
+        <h4 class="fw-semibold mb-3">💬 Student Messages</h4>
+        <p class="text-muted">View and reply to messages from your students.</p>
+        <a class="btn btn-warning w-100 fw-bold" href="{% url 'mentor_messages' %}">View Messages</a>
+      </div>
     </div>
   </div>
 </div>
+
+<style>
+  .card {
+    border-radius: 15px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  }
+</style>
+
 {% endblock %}

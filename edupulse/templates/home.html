@@ -1,43 +1,61 @@
 {% extends "base.html" %}
 {% block content %}
+
+<!-- Hero Section -->
 <div class="text-center my-5">
-  <h1 class="display-4 fw-bold">Welcome to EduPulse</h1>
-  <p class="lead">An online tutorial platform for IT institutes</p>
+  <h1 class="display-4 fw-bold text-primary">🚀 Welcome to <span class="text-dark">EduPulse</span></h1>
+  <p class="lead text-muted">An innovative online tutorial platform for IT institutes</p>
+
   <div class="d-flex justify-content-center gap-3 mt-4">
     {% if not user.is_authenticated %}
-      <a href="{% url 'login' %}" class="btn btn-primary btn-lg">Login</a>
-      <a href="{% url 'signup' %}" class="btn btn-success btn-lg">Sign Up</a>
+      <a href="{% url 'login' %}" class="btn btn-lg btn-primary px-4">Login</a>
+      <a href="{% url 'signup' %}" class="btn btn-lg btn-outline-primary px-4">Sign Up</a>
     {% else %}
-      <a href="{% url 'dashboard' %}" class="btn btn-info btn-lg">Go to Dashboard</a>
+      <a href="{% url 'dashboard' %}" class="btn btn-lg btn-info px-4">Go to Dashboard</a>
     {% endif %}
   </div>
-  
-  {% if not user.is_authenticated %}
-    <div class="mt-4">
-      <a href="{% url 'create_demo_users' %}" class="btn btn-outline-secondary">Create Demo Users</a>
-      <small class="d-block text-muted mt-2">Login with: superadmin/password123, admin1/password123, mentor1/password123, student1/password123</small>
-    </div>
-  {% endif %}
 </div>
 
-<div class="row text-center mt-5">
+<!-- Features Section -->
+<div class="row text-center mt-5 g-4">
   <div class="col-md-4">
-    <div class="card shadow p-4">
-      <h3>📐 UI/UX</h3>
-      <p>Learn design thinking and user experience principles</p>
+    <div class="card shadow-lg border-0 h-100 p-4 hover-card">
+      <div class="card-body">
+        <h3 class="fw-semibold mb-3">📐 UI/UX</h3>
+        <p class="text-muted">Master design thinking and craft stunning user experiences with practical projects.</p>
+      </div>
     </div>
   </div>
+
   <div class="col-md-4">
-    <div class="card shadow p-4">
-      <h3>⚡ MERN</h3>
-      <p>Full-stack development with MongoDB, Express, React, Node</p>
+    <div class="card shadow-lg border-0 h-100 p-4 hover-card">
+      <div class="card-body">
+        <h3 class="fw-semibold mb-3">⚡ MERN</h3>
+        <p class="text-muted">Build powerful full-stack web apps using MongoDB, Express, React, and Node.js.</p>
+      </div>
     </div>
   </div>
+
   <div class="col-md-4">
-    <div class="card shadow p-4">
-      <h3>🐍 Django</h3>
-      <p>Build scalable web apps with Python Django</p>
+    <div class="card shadow-lg border-0 h-100 p-4 hover-card">
+      <div class="card-body">
+        <h3 class="fw-semibold mb-3">🐍 Django</h3>
+        <p class="text-muted">Develop scalable and secure web applications with Python Django, HTML, CSS, and Bootstrap.</p>
+      </div>
     </div>
   </div>
 </div>
+
+<!-- Extra Styling -->
+<style>
+  .hover-card {
+    border-radius: 15px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .hover-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  }
+</style>
+
 {% endblock %}
