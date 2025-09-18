@@ -1,43 +1,47 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class="container py-4">
-  <h2 class="mb-4 text-center fw-bold">🎓 Home</h2>
+<div class="container py-5">
+  <h2 class="mb-5 text-center fw-bold text-gradient">🎓 Student </h2>
 
   <div class="row g-4">
     <!-- Videos -->
     <div class="col-md-3 col-sm-6">
-      <div class="card shadow-lg border-0 h-100 text-center p-4 dashboard-card">
-        <div class="display-4 text-primary mb-3">🎥</div>
-        <h5 class="fw-bold">Videos</h5>
-        <a href="{% url 'student_videos' %}" class="btn btn-primary mt-3 w-100">Watch</a>
+      <div class="dashboard-card glass-card text-center p-4 h-100">
+        <div class="icon-box text-primary">🎥</div>
+        <h5 class="fw-bold mt-3">Videos</h5>
+        <p class="text-muted small">Learn from recorded lectures</p>
+        <a href="{% url 'student_videos' %}" class="btn btn-gradient-primary mt-3 w-100">Watch</a>
       </div>
     </div>
 
     <!-- Notes -->
     <div class="col-md-3 col-sm-6">
-      <div class="card shadow-lg border-0 h-100 text-center p-4 dashboard-card">
-        <div class="display-4 text-success mb-3">📚</div>
-        <h5 class="fw-bold">Notes</h5>
-        <a href="{% url 'student_notes' %}" class="btn btn-success mt-3 w-100">View Notes</a>
+      <div class="dashboard-card glass-card text-center p-4 h-100">
+        <div class="icon-box text-success">📚</div>
+        <h5 class="fw-bold mt-3">Notes</h5>
+        <p class="text-muted small">Access study materials</p>
+        <a href="{% url 'student_notes' %}" class="btn btn-gradient-success mt-3 w-100">View Notes</a>
       </div>
     </div>
 
     <!-- YouTube -->
     <div class="col-md-3 col-sm-6">
-      <div class="card shadow-lg border-0 h-100 text-center p-4 dashboard-card">
-        <div class="display-4 text-danger mb-3">🔗</div>
-        <h5 class="fw-bold">YouTube</h5>
-        <a href="{% url 'student_youtube' %}" class="btn btn-danger mt-3 w-100">Open Links</a>
+      <div class="dashboard-card glass-card text-center p-4 h-100">
+        <div class="icon-box text-danger">🔗</div>
+        <h5 class="fw-bold mt-3">YouTube</h5>
+        <p class="text-muted small">Explore curated playlists</p>
+        <a href="{% url 'student_youtube' %}" class="btn btn-gradient-danger mt-3 w-100">Open Links</a>
       </div>
     </div>
 
     <!-- Performance -->
     <div class="col-md-3 col-sm-6">
-      <div class="card shadow-lg border-0 h-100 text-center p-4 dashboard-card">
-        <div class="display-4 text-info mb-3">📊</div>
-        <h5 class="fw-bold">Performance</h5>
-        <a href="{% url 'student_performance' %}" class="btn btn-info mt-3 w-100">Track</a>
+      <div class="dashboard-card glass-card text-center p-4 h-100">
+        <div class="icon-box text-info">📊</div>
+        <h5 class="fw-bold mt-3">Performance</h5>
+        <p class="text-muted small">Track your progress</p>
+        <a href="{% url 'student_performance' %}" class="btn btn-gradient-info mt-3 w-100">Track</a>
       </div>
     </div>
   </div>
@@ -45,23 +49,104 @@
   <!-- Messages -->
   <div class="row mt-5">
     <div class="col-12">
-      <div class="card shadow-lg border-0 text-center p-5 dashboard-card">
-        <div class="display-4 text-dark mb-3">💬</div>
-        <h4 class="fw-bold">Messages</h4>
-        <a href="{% url 'student_messages' %}" class="btn btn-dark mt-3 px-5">Ask Doubts</a>
+      <div class="dashboard-card glass-card text-center p-5">
+        <div class="icon-box text-dark">💬</div>
+        <h4 class="fw-bold mt-3">Messages</h4>
+        <p class="text-muted">Ask your doubts and interact with mentors</p>
+        <a href="{% url 'student_messages' %}" class="btn btn-gradient-dark mt-3 px-5">Ask Doubts</a>
       </div>
     </div>
   </div>
 </div>
 
 <style>
-  .dashboard-card {
-    border-radius: 15px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  /* Gradient heading */
+  .text-gradient {
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
-  .dashboard-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+
+  /* Glassmorphism cards */
+  .glass-card {
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .glass-card:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+  }
+
+  /* Icon styling */
+  .icon-box {
+    font-size: 2.8rem;
+    line-height: 1;
+    animation: floatIcon 3s ease-in-out infinite;
+  }
+  @keyframes floatIcon {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+  /* Gradient buttons */
+  .btn-gradient-primary {
+    background: linear-gradient(135deg, #4a2db6, #8e54e9);
+    color: white;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: 0.3s;
+  }
+  .btn-gradient-primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(74,45,182,0.35);
+  }
+
+  .btn-gradient-success {
+    background: linear-gradient(135deg, #00b09b, #96c93d);
+    color: white;
+    border-radius: 12px;
+    font-weight: 600;
+  }
+  .btn-gradient-success:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0,176,155,0.35);
+  }
+
+  .btn-gradient-danger {
+    background: linear-gradient(135deg, #ff416c, #ff4b2b);
+    color: white;
+    border-radius: 12px;
+    font-weight: 600;
+  }
+  .btn-gradient-danger:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(255,65,108,0.35);
+  }
+
+  .btn-gradient-info {
+    background: linear-gradient(135deg, #36d1dc, #5b86e5);
+    color: white;
+    border-radius: 12px;
+    font-weight: 600;
+  }
+  .btn-gradient-info:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(54,209,220,0.35);
+  }
+
+  .btn-gradient-dark {
+    background: linear-gradient(135deg, #232526, #414345);
+    color: white;
+    border-radius: 12px;
+    font-weight: 600;
+  }
+  .btn-gradient-dark:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(35,37,38,0.35);
   }
 </style>
 

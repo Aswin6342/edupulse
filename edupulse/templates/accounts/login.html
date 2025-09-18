@@ -12,32 +12,70 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(135deg, #667eea, #764ba2);
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
       font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
     }
+
+    /* Card with scale + fade animation */
     .card {
       width: 100%;
       max-width: 420px;
       border-radius: 20px;
       background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(18px);
+      backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.25);
-      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
       padding: 2.5rem;
-      animation: fadeIn 0.7s ease;
+      animation: zoomFade 0.8s ease forwards;
+      transform: scale(0.8);
+      opacity: 0;
     }
-    @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(40px);}
-      to {opacity: 1; transform: translateY(0);}
+
+    @keyframes zoomFade {
+      0% {opacity: 0; transform: scale(0.8) translateY(30px);}
+      60% {opacity: 1; transform: scale(1.05) translateY(-5px);}
+      100% {opacity: 1; transform: scale(1) translateY(0);}
     }
-    .brand-title {
+
+    /* Logo spin-in */
+    .brand-logo {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-size: 2rem;
+      font-weight: bold;
+      color: #6a11cb;
+      margin: 0 auto 1rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      animation: spinIn 1s ease;
+    }
+
+    @keyframes spinIn {
+      from {transform: rotate(-360deg) scale(0.5); opacity: 0;}
+      to {transform: rotate(0) scale(1); opacity: 1;}
+    }
+
+    .brand-title {
+      font-size: 1.8rem;
       font-weight: 700;
       text-align: center;
+      margin-bottom: 1.5rem;
       background: linear-gradient(135deg, #fff, #e2f3ff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      animation: fadeSlide 1s ease;
     }
+
+    @keyframes fadeSlide {
+      from {opacity: 0; transform: translateY(-20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
     .input-group-text {
       background: rgba(255, 255, 255, 0.25);
       border: none;
@@ -45,16 +83,22 @@
       color: #4a2db6;
       font-size: 1.2rem;
     }
+
     .form-control {
       border-radius: 0 12px 12px 0;
       border: none;
       padding: 0.9rem 1rem;
-      background: rgba(255, 255, 255, 0.85);
+      background: rgba(255, 255, 255, 0.9);
+      transition: all 0.3s ease;
     }
+
     .form-control:focus {
       outline: none;
-      box-shadow: 0 0 0 0.25rem rgba(74, 45, 182, 0.25);
+      box-shadow: 0 0 12px rgba(106, 17, 203, 0.3);
+      transform: scale(1.02);
     }
+
+    /* Button with pulse on hover */
     .btn-gradient {
       background: linear-gradient(135deg, #4a2db6, #8e54e9);
       border: none;
@@ -64,25 +108,39 @@
       color: white;
       transition: all 0.3s ease;
     }
+
     .btn-gradient:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(74, 45, 182, 0.35);
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 10px 25px rgba(74, 45, 182, 0.4);
+      animation: pulse 0.6s infinite alternate;
     }
+
+    @keyframes pulse {
+      from {box-shadow: 0 0 15px rgba(142, 84, 233, 0.6);}
+      to {box-shadow: 0 0 30px rgba(142, 84, 233, 0.9);}
+    }
+
     .signup-link {
       color: #fff;
       font-weight: 600;
       text-decoration: none;
+      transition: color 0.3s;
     }
+
     .signup-link:hover {
       text-decoration: underline;
+      color: #ffe082;
     }
   </style>
 </head>
 <body>
 
   <div class="card">
-    <h2 class="brand-title mb-4">Welcome Back</h2>
-    
+    <div class="brand-logo">
+      <i class="bi bi-person-fill"></i>
+    </div>
+    <h2 class="brand-title">Welcome Back</h2>
+
     <form method="post">
       {% csrf_token %}
 

@@ -1,61 +1,43 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-3">
-  <h2>💬 Student Messages</h2>
-  <a href="{% url 'dashboard' %}" class="btn btn-outline-primary">← Back to Dashboard</a>
+  <h2>💬 Student Questions</h2>
+  <a href="{% url 'dashboard' %}" class="btn btn-outline-primary">← Back to home</a>
 </div>
 
 {% if messages %}
-  <div class="card shadow">
-    <div class="card-header">
-      <h5>📨 Chat with Students</h5>
-    </div>
+  <div class="list-group shadow-sm">
+    {% for message in messages reversed %}
+      <div class="list-group-item mb-3 rounded shadow-sm border">
+        <!-- Student Question -->
+        <div class="mb-2">
+          <h5 class="mb-1 text-primary">
+            {{ message.student.username }}
+            <small class="text-muted">asked on {{ message.created_at|date:"M d, Y H:i" }}</small>
+          </h5>
+          <p class="mb-2">{{ message.question }}</p>
+        </div>
 
-    <div class="card-body d-flex flex-column" style="height: 75vh;">
-      <!-- Chat area -->
-      <div id="chat-box" class="flex-grow-1 p-3 border rounded bg-light overflow-auto mb-3">
-        {% for message in messages %}
-          <!-- Student Question -->
-          <div class="d-flex mb-2">
-            <div class="p-2 px-3 bg-white text-dark rounded-3 shadow-sm" 
-                 style="max-width: 70%; border-bottom-left-radius: 0.5rem;">
-              <strong class="d-block text-primary">{{ message.student.username }}</strong>
-              <p class="mb-1">{{ message.question }}</p>
-              <small class="text-muted">{{ message.created_at|date:"M d, Y H:i" }}</small>
-            </div>
+        <!-- Mentor Reply -->
+        {% if message.reply %}
+          <div class="bg-light p-3 rounded border-start border-3 border-success">
+            <strong class="text-success">Your Reply</strong>
+            <p class="mb-1">{{ message.reply }}</p>
           </div>
-
-          <!-- Mentor Reply -->
-          {% if message.reply %}
-            <div class="d-flex justify-content-end mb-2">
-              <div class="p-2 px-3 bg-success text-white rounded-3 shadow-sm text-end" 
-                   style="max-width: 70%; border-bottom-right-radius: 0.5rem;">
-                <strong class="d-block">You</strong>
-                <p class="mb-1">{{ message.reply }}</p>
-                <small class="text-white-50">{{ message.created_at|date:"M d, Y H:i" }}</small>
-              </div>
+        {% else %}
+          <!-- Reply Form -->
+          <form method="post" class="mt-3">
+            {% csrf_token %}
+            <input type="hidden" name="msg_id" value="{{ message.id }}">
+            <div class="input-group">
+              <textarea name="reply" class="form-control" rows="1" placeholder="Type your reply..." required></textarea>
+              <button type="submit" class="btn btn-success">Reply</button>
             </div>
-          {% else %}
-            <!-- Reply Form -->
-            <form method="post" class="d-flex mt-2">
-              {% csrf_token %}
-              <input type="hidden" name="msg_id" value="{{ message.id }}">
-              <textarea name="reply" class="form-control me-2" rows="1" placeholder="Type your reply..." required></textarea>
-              <button type="submit" class="btn btn-success">Send</button>
-            </form>
-          {% endif %}
-        {% endfor %}
+          </form>
+        {% endif %}
       </div>
-    </div>
+    {% endfor %}
   </div>
-
-  <!-- Auto-scroll to bottom -->
-  <script>
-    var chatBox = document.getElementById("chat-box");
-    if (chatBox) {
-      chatBox.scrollTop = chatBox.scrollHeight;
-    }
-  </script>
 
 {% else %}
   <div class="text-center py-5">
